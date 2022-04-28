@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Tasked App</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="src/styles.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    
+  </head>
+
+  <body>
+    <main id="app">
+      <h1>tasked</h1>
+
+      <div class="todo-item">
+        <input type="checkbox" class="todo-check" />
+        <textarea
+          type="text"
+          class="todo-text"
+          rows="1"
+          placeholder="Add task"
+        ></textarea>
+        <button class="erase-task-btn">
+          <i class="fa fa-times" aria-hidden="true"></i>
+        </button>
+      </div>
+
+      <div class="todo-item">
+        <input type="checkbox" class="todo-check" />
+        <textarea
+          type="text"
+          class="todo-text"
+          rows="1"
+          placeholder="Add task"
+        ></textarea>
+        <button class="erase-task-btn">
+          <i class="fa fa-times" aria-hidden="true"></i>
+        </button>
+      </div>
+
+      <button id="add-item-btn">
+        <span class="plus-line-h"></span>
+        <span class="plus-line-v"></span>
+      </button>
+    </main>
+
+    <script src="src/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,121 @@
+  body,
+  textarea {
+    font-family: 'Roboto Mono', sans-serif;
+    font-size: 18px;
+    margin: 0;
+  }
+  
+  h1 {
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 1.8em;
+    margin: 40px 24px 27px 24px;
+  }
+  
+  .todo-item {
+    padding: 0 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .pressed {
+    background-color: #eeeeee;
+  }
+  
+  input.todo-check {
+    -webkit-appearance: none;
+    background-color: #111111;
+    border: none;
+    box-shadow: none;
+    padding: 12px;
+    border-radius: 6px;
+    margin: 0px;
+    position: relative;
+  }
+  
+  input.todo-check:active,
+  input.todo-check:checked:active {
+    box-shadow: none;
+  }
+  
+  input.todo-check:checked {
+    background-color: #ff5a60;
+    border: none;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05),
+      inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05),
+      inset 15px 10px -12px rgba(255, 255, 255, 0.1);
+    color: #99a1a7;
+  }
+  
+  input.todo-check:checked:after {
+    font-family: "Font Awesome 5 Free";
+    content: "\f00c";
+    font-weight: 900;
+    font-size: 14px;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    color: #ffffff;
+  }
+  
+  textarea.todo-text {
+    background-color: none;
+    border: none;
+    margin: 16px 16px;
+    flex-grow: 1;
+    resize: none;
+  }
+  
+  textarea.todo-text:focus-visible,
+  textarea.todo-text:focus {
+    outline: none;
+  }
+  
+  .erase-task-btn {
+    border: none;
+    background-color: rgba(255, 255, 255, 0);
+    color: rgba(195, 195, 195, 1);
+    text-decoration: none;
+    font-size: 22px;
+    cursor: pointer;
+  }
+  
+  #add-item-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: #ff5a60;
+    outline: none;
+    border: none;
+  }
+  
+  #add-item-btn:hover {
+    background-color: #c7474b;
+  }
+  
+  .plus-line-h,
+  .plus-line-v {
+    position: absolute;
+    display: block;
+    background-color: #ffffff;
+  }
+  
+  .plus-line-h {
+    width: 25px;
+    height: 3px;
+    top: 23px;
+    left: 12px;
+    border-radius: 3px;
+  }
+  
+  .plus-line-v {
+    width: 3px;
+    height: 24px;
+    top: 12px;
+    left: 23px;
+    border-radius: 3px;
+  }
+  
