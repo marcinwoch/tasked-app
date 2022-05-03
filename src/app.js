@@ -3,18 +3,23 @@
 function addItemEventListeners (item){
   const textarea = item.querySelector('.todo-text');
   const eraseButton = item.querySelector('.erase-task-btn');
-  addTextareaEventListeners(textarea);
+  const checkbox = item.querySelector('.todo-check');
+
+  addTextareaEventListeners(textarea, item);
   addEraseButtonEventListeners(eraseButton);
+  addCheckboxEventListeners(checkbox, textarea);
 }
 
 //Add event listeners to textarea node
-function addTextareaEventListeners (textarea){
+function addTextareaEventListeners (textarea, item){
   textarea.addEventListener('focus', function () {
-    textarea.style.backgroundColor = "red";
+    item.classList.add('pressed');
+    textarea.classList.add('pressed');
   })
 
   textarea.addEventListener('blur', function () {
-      textarea.style.backgroundColor = "green";
+    item.classList.remove('pressed');
+    textarea.classList.remove('pressed');
   })
 }
 
@@ -26,21 +31,48 @@ function addEraseButtonEventListeners (eraseButton){
   });
 }
 
+//Add event listeners to checkbox input
+
+function addCheckboxEventListeners (chechbox, textarea){
+  console.log(chechbox);
+  chechbox.addEventListener('click', function () {
+    if (chechbox.checked === true){
+      textarea.classList.add('line-through');
+    }else{
+      textarea.classList.remove('line-through');
+    }
+  });
+}
+
 //Add task item
 function newElement (blueprint){
-  const xItem = blueprint.cloneNode(true);
-  addItemEventListeners(xItem);
+  const clonedBluprint = blueprint.cloneNode(true);
+  addItemEventListeners(clonedBluprint);
   const taskContainer = document.querySelector('#task-container');
-  taskContainer.prepend(xItem);
+  taskContainer.prepend(clonedBluprint);
 }
+
 
 //Get .todo-item and add item listeners
 
 function handleTodoItems () {
-  const getInputs = document.querySelectorAll('.todo-item');
+  const getItem = document.querySelectorAll('.todo-item');
 
-  for (let i = 0; i < getInputs.length; i++) {
-    addItemEventListeners(getInputs[i]);
+  for (let i = 0; i < getItem.length; i++) {
+    addItemEventListeners(getItem[i]);
+  }
+}
+
+//Auto-stretch text area
+
+function handleAutoStretch () {
+  const getTextareas = document.querySelectorAll('.todo-text');
+
+  for (let i = 0; i < getTextareas.length; i++) {
+    getTextareas[i].addEventListener('input', function(){
+      this.style.height = "auto";
+      this.style.height = this.scrollHeight + "px";
+    });
   }
 }
 
@@ -50,14 +82,15 @@ function handleButton (blueprint){
   const addTaskBtn = document.querySelector("#add-item-btn");
   addTaskBtn.addEventListener('click', function(){
     newElement(blueprint);
+    handleAutoStretch();
   });
 }
 
 //Create the blueprint of div.todo-item
 
 function createBlueprint () {
-  const newItem = document.querySelector('div.todo-item');
-  const clonedItem = newItem.cloneNode(true);
+  const getItem = document.querySelector('div.todo-item');
+  const clonedItem = getItem.cloneNode(true);
   return clonedItem;
 }
 
@@ -65,29 +98,8 @@ function createBlueprint () {
 const blueprint = createBlueprint();
 
 handleButton(blueprint);
-
 handleTodoItems();
+handleAutoStretch();
 
-
-
-
-
-
-//Auto-strech textarea
-
-const tx = document.getElementsByClassName("todo-text");
-
-for (let i = 0; i < tx.length; i++) {
-  tx[i].setAttribute(
-    "style",
-    "height:" + tx[i].scrollHeight + "px;overflow-y:hidden;"
-  );
-  tx[i].addEventListener("input", OnInput, false);
-}
-
-function OnInput() {
-  this.style.height = "auto";
-  this.style.height = this.scrollHeight + "px";
-}
 
 

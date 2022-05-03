@@ -10,16 +10,26 @@
     font-size: 1.8em;
     margin: 40px 24px 27px 24px;
   }
+
+  #task-container{
+    display: flex;
+    flex-direction: column;
+  }
   
   .todo-item {
     padding: 0 24px;
     display: flex;
-    justify-content: space-between;
+    flex-direction: row;
+    justify-content: flex-start;
     align-items: center;
   }
   
   .pressed {
     background-color: #eeeeee;
+  }
+
+  .line-through{
+    text-decoration: solid line-through #ff5a60 2px;
   }
   
   input.todo-check {
@@ -62,7 +72,7 @@
     background-color: none;
     border: none;
     margin: 16px 16px;
-    flex-grow: 1;
+    flex-grow: 2;
     resize: none;
   }
   
