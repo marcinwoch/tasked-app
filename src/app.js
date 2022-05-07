@@ -28,13 +28,13 @@ function addTextareaEventListeners (textarea, item){
 function addEraseButtonEventListeners (eraseButton){
   eraseButton.addEventListener('click', function () {
     eraseButton.parentElement.remove();
+    toggleDisplay();
   });
 }
 
 //Add event listeners to checkbox input
 
 function addCheckboxEventListeners (chechbox, textarea){
-  console.log(chechbox);
   chechbox.addEventListener('click', function () {
     if (chechbox.checked === true){
       textarea.classList.add('line-through');
@@ -45,22 +45,12 @@ function addCheckboxEventListeners (chechbox, textarea){
 }
 
 //Add task item
+
 function newElement (blueprint){
   const clonedBluprint = blueprint.cloneNode(true);
   addItemEventListeners(clonedBluprint);
   const taskContainer = document.querySelector('#task-container');
   taskContainer.prepend(clonedBluprint);
-}
-
-
-//Get .todo-item and add item listeners
-
-function handleTodoItems () {
-  const getItem = document.querySelectorAll('.todo-item');
-
-  for (let i = 0; i < getItem.length; i++) {
-    addItemEventListeners(getItem[i]);
-  }
 }
 
 //Auto-stretch text area
@@ -83,23 +73,61 @@ function handleButton (blueprint){
   addTaskBtn.addEventListener('click', function(){
     newElement(blueprint);
     handleAutoStretch();
+    toggleDisplay();
   });
+
 }
 
 //Create the blueprint of div.todo-item
 
 function createBlueprint () {
-  const getItem = document.querySelector('div.todo-item');
-  const clonedItem = getItem.cloneNode(true);
-  return clonedItem;
+  const todoRootElement = document.createElement('div');
+  todoRootElement.setAttribute("class", "todo-item");
+
+  const checkboxElement = document.createElement('input');
+  checkboxElement.setAttribute("type", "checkbox");
+  checkboxElement.setAttribute("class", "todo-check")
+
+  const textareaElement = document.createElement('textarea');
+  textareaElement.setAttribute("type", "text");
+  textareaElement.setAttribute("class", "todo-text");
+  textareaElement.setAttribute("row", "1");
+  textareaElement.setAttribute("placeholder", "Add task");
+
+  const buttonElement = document.createElement('button');
+  buttonElement.setAttribute("class", "erase-task-btn");
+
+  const eraseElement = document.createElement('i');
+  eraseElement.setAttribute("class", "fa fa-times");
+  eraseElement.setAttribute("aria-hidden", "true");
+
+  todoRootElement.appendChild(checkboxElement);
+  todoRootElement.appendChild(textareaElement);
+  todoRootElement.appendChild(buttonElement);
+  buttonElement.appendChild(eraseElement); 
+   
+  return todoRootElement;
+}
+
+//Toggle header display
+
+function toggleDisplay(){
+  const getItem = document.querySelectorAll('.todo-item');
+  
+  if (getItem.length === 0){
+    headerItem.classList.remove('hide')
+  } else {
+    headerItem.classList.add('hide')
+  }
 }
 
 //Result (clonedItem) of createBlueprint() is referanced to blueprint variable
 const blueprint = createBlueprint();
+const headerItem = document.querySelector(".header-add-item");
+
 
 handleButton(blueprint);
-handleTodoItems();
-handleAutoStretch();
+toggleDisplay();
 
 
 

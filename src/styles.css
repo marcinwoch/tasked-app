@@ -11,6 +11,12 @@
     margin: 40px 24px 27px 24px;
   }
 
+  p.header-add-item{
+    color: rgb(161, 161, 161);
+    margin: 5px 0;
+    padding: 0 22px;
+  }
+
   #task-container{
     display: flex;
     flex-direction: column;
@@ -27,9 +33,13 @@
   .pressed {
     background-color: #eeeeee;
   }
+  .hide{
+    display: none;
+  }
 
   .line-through{
     text-decoration: solid line-through #ff5a60 2px;
+    color: #666666;
   }
   
   input.todo-check {
