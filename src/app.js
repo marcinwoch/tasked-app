@@ -91,7 +91,7 @@ function createBlueprint () {
   const textareaElement = document.createElement('textarea');
   textareaElement.setAttribute("type", "text");
   textareaElement.setAttribute("class", "todo-text");
-  textareaElement.setAttribute("row", "1");
+  textareaElement.setAttribute("rows", "1");
   textareaElement.setAttribute("placeholder", "Add task");
 
   const buttonElement = document.createElement('button');
