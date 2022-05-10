@@ -28,8 +28,17 @@ function createBlueprint() {
 }
 
 function createID() {
-    let newID = "ID#" + Math.floor(Math.random() * 10000);
+    let newID = "ID#" + Math.floor(Math.random() * 1000 + 1);
     return newID;
+}
+
+function cloneItem(blueprint) {
+    let cloneItem = blueprint.cloneNode(true);
+    return cloneItem;
+}
+
+function removeTask(id) {
+
 }
 
 function handleBtn() {
@@ -37,43 +46,44 @@ function handleBtn() {
     btn.addEventListener("click", function () {
         let taskContainer = document.querySelector("#task-container");
         let createNewID = createID();
-        //   console.log(createNewID);
         let newItemElement = Object.assign({}, itemElement);
+
         newItemElement.id = String(createNewID);
-        //   console.log(newItemElement);
+
         taskList.push(newItemElement);
+        taskContainer.prepend(cloneItem(blueprint));
+
         console.log(taskList);
-        // console.log(taskList.length);
 
-        for (let i = 0; i < taskList.length; i++) {
-            console.log(taskList[i].content);
-            taskContainer.prepend(taskList[i].content);
-        }
-
-
-        // taskList.forEach(function (index) {
-        //     let list = 
-        //     console.log(index.content);
-
-        // })
+        toggleDisplay();
 
     });
 }
 
+function toggleDisplay() {
+    const getItem = document.querySelectorAll('.todo-item');
+
+    if (getItem.length === 0) {
+        headerItem.classList.remove('hide')
+    } else {
+        headerItem.classList.add('hide')
+    }
+}
 
 let taskList = [];
+
+const headerItem = document.querySelector(".header-add-item");
 
 const blueprint = createBlueprint();
 
 let itemElement = {
     id: "",
-    content: blueprint,
+    content: "",
     isDone: false
 };
 
 handleBtn();
-
-  // https://jsbin.com/minutesoye/edit?html,js,console,output
+toggleDisplay();
 
 
 
