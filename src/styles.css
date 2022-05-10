@@ -4,24 +4,24 @@
     font-size: 18px;
     margin: 0;
   }
-  
+
   h1 {
     font-family: 'Fira Sans', sans-serif;
     font-size: 1.8em;
     margin: 40px 24px 27px 24px;
   }
 
-  p.header-add-item{
+  p.header-add-item {
     color: rgb(161, 161, 161);
     margin: 5px 0;
     padding: 0 22px;
   }
 
-  #task-container{
+  #task-container {
     display: flex;
     flex-direction: column;
   }
-  
+
   .todo-item {
     padding: 0 24px;
     display: flex;
@@ -29,19 +29,20 @@
     justify-content: flex-start;
     align-items: center;
   }
-  
+
   .pressed {
     background-color: #eeeeee;
   }
-  .hide{
+
+  .hide {
     display: none;
   }
 
-  .line-through{
+  .line-through {
     text-decoration: solid line-through #ff5a60 2px;
     color: #666666;
   }
-  
+
   input.todo-check {
     -webkit-appearance: none;
     background-color: #111111;
@@ -52,12 +53,12 @@
     margin: 0px;
     position: relative;
   }
-  
+
   input.todo-check:active,
   input.todo-check:checked:active {
     box-shadow: none;
   }
-  
+
   input.todo-check:checked {
     background-color: #ff5a60;
     border: none;
@@ -66,7 +67,7 @@
       inset 15px 10px -12px rgba(255, 255, 255, 0.1);
     color: #99a1a7;
   }
-  
+
   input.todo-check:checked:after {
     font-family: "Font Awesome 5 Free";
     content: "\f00c";
@@ -77,7 +78,7 @@
     left: 5px;
     color: #ffffff;
   }
-  
+
   textarea.todo-text {
     background-color: none;
     border: none;
@@ -85,12 +86,12 @@
     flex-grow: 2;
     resize: none;
   }
-  
+
   textarea.todo-text:focus-visible,
   textarea.todo-text:focus {
     outline: none;
   }
-  
+
   .erase-task-btn {
     border: none;
     background-color: rgba(255, 255, 255, 0);
@@ -99,7 +100,7 @@
     font-size: 22px;
     cursor: pointer;
   }
-  
+
   #add-item-btn {
     position: fixed;
     bottom: 24px;
@@ -111,18 +112,18 @@
     outline: none;
     border: none;
   }
-  
+
   #add-item-btn:hover {
     background-color: #c7474b;
   }
-  
+
   .plus-line-h,
   .plus-line-v {
     position: absolute;
     display: block;
     background-color: #ffffff;
   }
-  
+
   .plus-line-h {
     width: 25px;
     height: 3px;
@@ -130,7 +131,7 @@
     left: 12px;
     border-radius: 3px;
   }
-  
+
   .plus-line-v {
     width: 3px;
     height: 24px;
@@ -138,4 +139,3 @@
     left: 23px;
     border-radius: 3px;
   }
-  
