@@ -14,6 +14,7 @@ function createBlueprint() {
 
     const buttonElement = document.createElement('button');
     buttonElement.setAttribute("class", "erase-task-btn");
+    buttonElement.setAttribute("class", "erase-task-btn");
 
     const eraseElement = document.createElement('i');
     eraseElement.setAttribute("class", "fa fa-times");
@@ -37,25 +38,50 @@ function cloneItem(blueprint) {
     return cloneItem;
 }
 
-function removeTask(id) {
+
+function renderTasks() {
+    const container = document.querySelector("#task-container");
+    container.innerHTML = '';
+    console.log(taskList);
+    taskList.forEach(() => {
+        container.prepend(cloneItem(blueprint));
+    }) // resetuje kontener
+
+    console.log(container);
 
 }
 
-function handleBtn() {
-    const btn = document.querySelector("#add-item-btn");
-    btn.addEventListener("click", function () {
+function removeTask(id) {
+    const removeBtn = document.querySelector(".erase-task-btn");
+
+    removeBtn.addEventListener('click', () => {
+        const index = taskList.findIndex((element) => element.id === id);
+        console.log(index);
+        taskList.splice(index, 1);
+        console.log(taskList);
+
+        toggleDisplay();
+        renderTasks()
+    })
+
+}
+
+function addTask() {
+    const addBtn = document.querySelector("#add-item-btn");
+    addBtn.addEventListener("click", function () {
         let taskContainer = document.querySelector("#task-container");
         let createNewID = createID();
         let newItemElement = Object.assign({}, itemElement);
 
         newItemElement.id = String(createNewID);
 
-        taskList.push(newItemElement);
+        taskList.unshift(newItemElement);
+        console.log(taskList);
         taskContainer.prepend(cloneItem(blueprint));
 
-        console.log(taskList);
-
         toggleDisplay();
+        renderTasks();
+        removeTask(newItemElement.id)
 
     });
 }
@@ -82,7 +108,7 @@ let itemElement = {
     isDone: false
 };
 
-handleBtn();
+addTask();
 toggleDisplay();
 
 
