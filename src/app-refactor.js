@@ -34,8 +34,8 @@ function createID() {
 }
 
 function cloneItem(blueprint) {
-    let cloneItem = blueprint.cloneNode(true);
-    return cloneItem;
+    let clonedBlueprint = blueprint.cloneNode(true);
+    return clonedBlueprint;
 }
 
 
