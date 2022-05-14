@@ -38,18 +38,6 @@ function cloneItem(blueprint) {
 }
 
 
-function renderTasks() {
-    const container = document.querySelector("#task-container");
-    container.innerHTML = '';
-    console.log(taskList);
-    taskList.forEach(() => {
-        container.prepend(cloneItem(blueprint));
-    }) // resetuje kontener
-
-    console.log(container);
-
-}
-
 function removeTask(id, taskContainer) {
     const removeBtn = document.querySelector(".erase-task-btn");
 
@@ -62,7 +50,6 @@ function removeTask(id, taskContainer) {
 
         if (taskContainer.hasChildNodes()) {
             taskContainer.removeChild(taskContainer.children[index]);
-            console.log(index)
         }
 
         toggleDisplay();
@@ -81,13 +68,42 @@ function addTask() {
     newItemElement.id = String(createNewID);
 
     taskList.unshift(newItemElement);
-    console.log(taskList);
     taskContainer.prepend(cloneItem(blueprint));
 
     toggleDisplay();
 
+    inputStatus(newItemElement.id, taskContainer);
+    checkboxStatus(newItemElement.id, taskContainer);
     removeTask(newItemElement.id, taskContainer);
 
+}
+
+function inputStatus(id, taskContainer) {
+    const inputElement = taskContainer.querySelector(".todo-text");
+
+    inputElement.addEventListener('blur', () => {
+        const index = taskList.findIndex((element) => {
+            return element.id === id
+        });
+        taskList[index].content = inputElement.value;
+    });
+}
+
+function checkboxStatus(id, taskContainer) {
+    const checkboxElement = taskContainer.querySelector(".todo-check");
+
+    checkboxElement.addEventListener('click', () => {
+        const index = taskList.findIndex((element) => {
+            return element.id === id
+        });
+
+        if (taskList[index].isDone === false) {
+            taskList[index].isDone = true
+        } else {
+            taskList[index].isDone = false;
+        }
+
+    });
 }
 
 function toggleDisplay() {
