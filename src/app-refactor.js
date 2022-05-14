@@ -14,7 +14,6 @@ function createBlueprint() {
 
     const buttonElement = document.createElement('button');
     buttonElement.setAttribute("class", "erase-task-btn");
-    buttonElement.setAttribute("class", "erase-task-btn");
 
     const eraseElement = document.createElement('i');
     eraseElement.setAttribute("class", "fa fa-times");
@@ -51,39 +50,44 @@ function renderTasks() {
 
 }
 
-function removeTask(id) {
+function removeTask(id, taskContainer) {
     const removeBtn = document.querySelector(".erase-task-btn");
 
     removeBtn.addEventListener('click', () => {
-        const index = taskList.findIndex((element) => element.id === id);
-        console.log(index);
+        const index = taskList.findIndex((element) => {
+            return element.id === id
+        });
+
         taskList.splice(index, 1);
-        console.log(taskList);
+
+        if (taskContainer.hasChildNodes()) {
+            taskContainer.removeChild(taskContainer.children[index]);
+            console.log(index)
+        }
 
         toggleDisplay();
-        renderTasks()
+
     })
 
 }
 
 function addTask() {
     const addBtn = document.querySelector("#add-item-btn");
-    addBtn.addEventListener("click", function () {
-        let taskContainer = document.querySelector("#task-container");
-        let createNewID = createID();
-        let newItemElement = Object.assign({}, itemElement);
 
-        newItemElement.id = String(createNewID);
+    let taskContainer = document.querySelector("#task-container");
+    let createNewID = createID();
+    let newItemElement = Object.assign({}, itemElement);
 
-        taskList.unshift(newItemElement);
-        console.log(taskList);
-        taskContainer.prepend(cloneItem(blueprint));
+    newItemElement.id = String(createNewID);
 
-        toggleDisplay();
-        renderTasks();
-        removeTask(newItemElement.id)
+    taskList.unshift(newItemElement);
+    console.log(taskList);
+    taskContainer.prepend(cloneItem(blueprint));
 
-    });
+    toggleDisplay();
+
+    removeTask(newItemElement.id, taskContainer);
+
 }
 
 function toggleDisplay() {
@@ -107,9 +111,6 @@ let itemElement = {
     content: "",
     isDone: false
 };
-
-addTask();
-toggleDisplay();
 
 
 
